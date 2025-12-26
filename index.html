@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Tasks</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div
+        class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto border-x border-[#e5e7eb] dark:border-[#283039]">
+        <!-- Header -->
+        <div
+            class="flex items-center justify-between p-4 pb-2 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+            <h1 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">My Tasks
+            </h1>
+            <a href="profile.html" class="bg-center bg-no-repeat bg-cover rounded-full size-10"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSvQA1ClEstSkKWz5BSF3vy6pl6ZzgdxthIri9JmaONsH1EvkUjsO_GYH1G4ls0CjA815iIj5xRR1I7OtmmYYX7byqI983vpW0nGDz0pMQ-qfWSPhqq7eGwsivMxc7mYSI7ivF8KjYvmPtwxeRPeOwCApcpnAeyQUe1CdLz6qDr0KZqd8vHFVaS6t_xR9bSfuM44oSmPHTF9LM8COa-pLBlgI0xI2pe8SbYIdoDDmw3i-FrYHYkoMlJjVnkYwBznbvi2GPFv0yCEg");'>
+            </a>
+        </div>
+
+        <!-- Search -->
+        <div class="px-4 py-2">
+            <div
+                class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm">
+                <span class="material-symbols-outlined text-[#9dabb9]" style="font-size: 24px;">search</span>
+                <input id="search-input" type="text" placeholder="Search tasks..."
+                    class="bg-transparent border-none p-0 text-[#111418] dark:text-white placeholder:text-[#9dabb9] text-base font-normal w-full focus:ring-0">
+            </div>
+        </div>
+
+        <!-- Categories/Tabs -->
+        <div class="flex gap-3 overflow-x-auto px-4 py-2 scrollbar-hide">
+            <button data-filter="All"
+                class="category-btn px-4 py-2 rounded-full bg-[#111418] dark:bg-white text-white dark:text-[#111418] text-sm font-bold whitespace-nowrap transition-colors">All</button>
+            <button data-filter="Personal"
+                class="category-btn px-4 py-2 rounded-full border border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#1b252f] text-[#111418] dark:text-white text-sm font-bold whitespace-nowrap transition-colors">Personal</button>
+            <button data-filter="Work"
+                class="category-btn px-4 py-2 rounded-full border border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#1b252f] text-[#111418] dark:text-white text-sm font-bold whitespace-nowrap transition-colors">Work</button>
+            <button data-filter="Urgent"
+                class="category-btn px-4 py-2 rounded-full border border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#1b252f] text-[#111418] dark:text-white text-sm font-bold whitespace-nowrap transition-colors">Urgent</button>
+        </div>
+
+        <!-- Task List -->
+        <!-- Task List -->
+        <div id="task-list" class="flex flex-col flex-1 p-4 gap-3 pb-24">
+            <!-- Task Item 1 (Linked) -->
+            <div data-category="Work"
+                class="task-item group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm hover:border-primary transition-all active:scale-[0.98] cursor-pointer"
+                onclick="if(!event.target.closest('.task-checkbox')) window.location.href='todo.html'">
+                <div
+                    class="task-checkbox flex items-center justify-center size-6 shrink-0 rounded-full border-2 border-[#d1d5db] dark:border-[#4b5563] group-hover:border-primary transition-colors z-10 hover:scale-110">
+                </div>
+                <div class="flex flex-col flex-1 gap-1">
+                    <h3 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Redesign Homepage Hero
+                        Section</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Today, 5:00 PM</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="text-primary text-xs font-bold">Work</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="task-status text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">In
+                            Progress</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-[#9dabb9] group-hover:text-primary transition-colors"
+                    style="font-size: 24px;">chevron_right</span>
+            </div>
+
+            <!-- Task Item 2 -->
+            <div data-category="Personal"
+                class="task-item group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm hover:border-primary transition-all active:scale-[0.98]"
+                <div
+                class="task-item group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm hover:border-primary transition-all active:scale-[0.98]">
+                <div
+                    class="task-checkbox flex items-center justify-center size-6 shrink-0 rounded-full border-2 border-[#d1d5db] dark:border-[#4b5563] group-hover:border-primary transition-colors z-10 hover:scale-110 cursor-pointer">
+                </div>
+                <div class="flex flex-col flex-1 gap-1">
+                    <h3 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Grocery Shopping</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Tomorrow, 10:00 AM</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="text-emerald-500 text-xs font-bold">Personal</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="task-status text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Todo</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-[#9dabb9] group-hover:text-primary transition-colors"
+                    style="font-size: 24px;">chevron_right</span>
+            </div>
+
+            <!-- Task Item 3 -->
+            <div data-category="Work"
+                class="task-item group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm hover:border-primary transition-all active:scale-[0.98]">
+                <div
+                    class="task-checkbox flex items-center justify-center size-6 shrink-0 rounded-full border-2 border-[#d1d5db] dark:border-[#4b5563] group-hover:border-primary transition-colors z-10 hover:scale-110 cursor-pointer">
+                </div>
+                <div class="flex flex-col flex-1 gap-1">
+                    <h3 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Weekly Team Sync</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Oct 26, 2:00 PM</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="text-primary text-xs font-bold">Work</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="task-status text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Todo</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-[#9dabb9] group-hover:text-primary transition-colors"
+                    style="font-size: 24px;">chevron_right</span>
+            </div>
+
+            <!-- Completed Section Header -->
+            <div class="pt-4 flex items-center justify-between">
+                <span class="text-[#111418] dark:text-white text-sm font-bold">Completed</span>
+                <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">2 tasks</span>
+            </div>
+
+            <!-- Completed Task Item -->
+            <div
+                class="group flex items-center gap-4 p-4 rounded-xl bg-white/50 dark:bg-[#1b252f]/50 border border-[#e5e7eb] dark:border-[#283039] shadow-sm">
+                <div
+                    class="flex items-center justify-center size-6 shrink-0 rounded-full bg-primary border-2 border-primary text-white">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">check</span>
+                </div>
+                <div class="flex flex-col flex-1 gap-1">
+                    <h3 class="text-[#6b7280] dark:text-[#9dabb9] text-base font-medium leading-tight line-through">Call
+                        Insurance Company</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Yesterday</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Task Modal -->
+        <div id="add-task-modal"
+            class="hidden fixed inset-0 z-50 flex items-end justify-center sm:items-center bg-black/50 backdrop-blur-sm p-4 transition-opacity opacity-0">
+            <div
+                class="w-full max-w-md bg-white dark:bg-[#1b252f] rounded-2xl p-6 shadow-2xl transform transition-all translate-y-full sm:translate-y-0 scale-95">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-[#111418] dark:text-white text-xl font-bold">New Task</h2>
+                    <button class="modal-close text-[#9dabb9] hover:text-[#111418] dark:hover:text-white">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-2">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-[#6b7280] dark:text-[#9dabb9]">Title</label>
+                        <input id="new-task-title" type="text" placeholder="What needs to be done?"
+                            class="w-full rounded-xl bg-[#f3f4f6] dark:bg-[#283039] border border-transparent focus:border-primary focus:bg-white dark:focus:bg-[#101922] p-3 text-[#111418] dark:text-white outline-none transition-all">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-[#6b7280] dark:text-[#9dabb9]">Priority</label>
+                            <select id="new-task-priority"
+                                class="w-full rounded-xl bg-[#f3f4f6] dark:bg-[#283039] border border-transparent p-3 text-[#111418] dark:text-white outline-none">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-[#6b7280] dark:text-[#9dabb9]">Category</label>
+                            <select id="new-task-category"
+                                class="w-full rounded-xl bg-[#f3f4f6] dark:bg-[#283039] border border-transparent p-3 text-[#111418] dark:text-white outline-none">
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-[#6b7280] dark:text-[#9dabb9]">Status</label>
+                        <select id="new-task-status"
+                            class="w-full rounded-xl bg-[#f3f4f6] dark:bg-[#283039] border border-transparent p-3 text-[#111418] dark:text-white outline-none">
+                            <option value="Todo">Todo</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="In Review">In Review</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="flex gap-3 mt-2">
+                        <button
+                            class="modal-close flex-1 py-3 rounded-xl border border-[#e5e7eb] dark:border-[#283039] text-[#111418] dark:text-white font-bold hover:bg-[#f3f4f6] dark:hover:bg-[#283039] transition-colors">Cancel</button>
+                        <button id="save-task-btn"
+                            class="flex-1 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:bg-primary/90 transition-colors">Save
+                            Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAB -->
+        <button id="fab-add-task"
+            class="fixed bottom-24 right-6 z-40 flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
+            <span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+        </button>
+
+        <!-- Bottom Navigation (Optional but good for apps) -->
+        <div
+            class="sticky bottom-0 z-10 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-[#e5e7eb] dark:border-[#283039]">
+            <div class="grid grid-cols-4 h-16">
+                <button class="flex flex-col items-center justify-center gap-1 text-primary">
+                    <span class="material-symbols-outlined"
+                        style="font-size: 24px; font-variation-settings: 'FILL' 1;">list</span>
+                    <span class="text-[10px] font-bold">Tasks</span>
+                </button>
+                <a href="calendar.html"
+                    class="flex flex-col items-center justify-center gap-1 text-[#9dabb9] hover:text-[#111418] dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">calendar_month</span>
+                    <span class="text-[10px] font-medium">Calendar</span>
+                </a>
+                <a href="alerts.html"
+                    class="flex flex-col items-center justify-center gap-1 text-[#9dabb9] hover:text-[#111418] dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">notifications</span>
+                    <span class="text-[10px] font-medium">Alerts</span>
+                </a>
+                <a href="settings.html"
+                    class="flex flex-col items-center justify-center gap-1 text-[#9dabb9] hover:text-[#111418] dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">settings</span>
+                    <span class="text-[10px] font-medium">Settings</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('add-task-modal');
+        const modalContent = modal.querySelector('div'); // Inner container
+        const fab = document.getElementById('fab-add-task');
+        const closeBtns = document.querySelectorAll('.modal-close');
+        const saveBtn = document.getElementById('save-task-btn');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            // Small delay for transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('translate-y-full', 'scale-95');
+                modalContent.classList.add('translate-y-0', 'scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('translate-y-full', 'scale-95');
+            modalContent.classList.remove('translate-y-0', 'scale-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        fab.addEventListener('click', openModal);
+        closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Save Logic
+        saveBtn.addEventListener('click', () => {
+            const titleInput = document.getElementById('new-task-title');
+            const categoryInput = document.getElementById('new-task-category');
+            const statusInput = document.getElementById('new-task-status');
+            const title = titleInput.value;
+            const category = categoryInput.value;
+            const status = statusInput.value;
+
+            if (!title) return;
+
+            const taskList = document.getElementById('task-list');
+            const newTask = document.createElement('div');
+
+            newTask.dataset.category = category; // Set attribute for filtering
+            newTask.className = "task-item group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1b252f] border border-[#e5e7eb] dark:border-[#283039] shadow-sm hover:border-primary transition-all active:scale-[0.98] cursor-pointer";
+            newTask.onclick = function (e) {
+                if (!e.target.closest('.task-checkbox')) window.location.href = 'todo.html';
+            };
+
+            // Determine category color/text if needed (keeping simple for now)
+            let categoryColorClass = 'text-primary';
+            if (category === 'Personal') categoryColorClass = 'text-emerald-500';
+            if (category === 'Urgent') categoryColorClass = 'text-red-500';
+
+            newTask.innerHTML = `
+                <div class="task-checkbox flex items-center justify-center size-6 shrink-0 rounded-full border-2 border-[#d1d5db] dark:border-[#4b5563] group-hover:border-primary transition-colors z-10 hover:scale-110">
+                </div>
+                <div class="flex flex-col flex-1 gap-1">
+                    <h3 class="text-[#111418] dark:text-white text-base font-bold leading-tight">${title}</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">Today</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="${categoryColorClass} text-xs font-bold">${category}</span>
+                        <div class="size-1 rounded-full bg-[#d1d5db] dark:bg-[#4b5563]"></div>
+                        <span class="task-status text-[#6b7280] dark:text-[#9dabb9] text-xs font-medium">${status}</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-[#9dabb9] group-hover:text-primary transition-colors" style="font-size: 24px;">chevron_right</span>
+            `;
+
+            // Insert at top (after header/existing tasks? actually prepend makes sense to show newest)
+            // But we have a 'Completed' section at bottom. We should probably insert it before the first child or just append if list matches sort order.
+            // Let's prepend to show immediate feedback.
+            taskList.insertBefore(newTask, taskList.firstChild);
+
+            // Add Checkbox Listener to the new element
+            const box = newTask.querySelector('.task-checkbox');
+            box.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // explicit stop since we have onclick on parent
+                const isChecked = box.classList.contains('bg-primary');
+                const taskTitle = box.parentElement.querySelector('h3');
+                const taskStatus = box.parentElement.querySelector('.task-status');
+
+                if (isChecked) {
+                    box.innerHTML = '';
+                    box.classList.remove('bg-primary', 'border-primary', 'text-white');
+                    box.classList.add('border-[#d1d5db]', 'dark:border-[#4b5563]');
+                    taskTitle.classList.remove('line-through', 'text-[#6b7280]', 'dark:text-[#9dabb9]');
+                    taskTitle.classList.add('text-[#111418]', 'dark:text-white');
+                    if (taskStatus) taskStatus.textContent = 'Todo';
+                } else {
+                    box.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">check</span>';
+                    box.classList.remove('border-[#d1d5db]', 'dark:border-[#4b5563]');
+                    box.classList.add('bg-primary', 'border-primary', 'text-white');
+                    taskTitle.classList.add('line-through', 'text-[#6b7280]', 'dark:text-[#9dabb9]');
+                    taskTitle.classList.remove('text-[#111418]', 'dark:text-white');
+                    if (taskStatus) taskStatus.textContent = 'Completed';
+                }
+            });
+
+            closeModal();
+            titleInput.value = '';
+        });
+
+        // Checkbox Logic (Existing Tasks)
+        document.querySelectorAll('.task-checkbox').forEach(box => {
+            box.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop bubbling if nested
+                const isChecked = box.classList.contains('bg-primary');
+                const title = box.parentElement.querySelector('h3');
+                const taskStatus = box.parentElement.querySelector('.task-status');
+
+                if (isChecked) {
+                    box.innerHTML = '';
+                    box.classList.remove('bg-primary', 'border-primary', 'text-white');
+                    box.classList.add('border-[#d1d5db]', 'dark:border-[#4b5563]');
+                    title.classList.remove('line-through', 'text-[#6b7280]', 'dark:text-[#9dabb9]');
+                    title.classList.add('text-[#111418]', 'dark:text-white');
+                    if (taskStatus) taskStatus.textContent = 'Todo';
+                } else {
+                    box.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">check</span>';
+                    box.classList.remove('border-[#d1d5db]', 'dark:border-[#4b5563]');
+                    box.classList.add('bg-primary', 'border-primary', 'text-white');
+                    title.classList.add('line-through', 'text-[#6b7280]', 'dark:text-[#9dabb9]');
+                    title.classList.remove('text-[#111418]', 'dark:text-white');
+                    if (taskStatus) taskStatus.textContent = 'Completed';
+                }
+            });
+        });
+
+        // Filtering Logic
+        const searchInput = document.getElementById('search-input');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        let currentCategory = 'All';
+
+        function filterTasks() {
+            const query = searchInput.value.toLowerCase();
+            const tasks = document.querySelectorAll('.task-item'); // Select all dynamic and static tasks
+
+            tasks.forEach(task => {
+                const title = task.querySelector('h3').textContent.toLowerCase();
+                const category = task.dataset.category;
+
+                const matchesSearch = title.includes(query);
+                const matchesCategory = currentCategory === 'All' || category === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    task.classList.remove('hidden');
+                } else {
+                    task.classList.add('hidden');
+                }
+            });
+        }
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentCategory = btn.dataset.filter;
+
+                // Update UI visually
+                categoryBtns.forEach(b => {
+                    // Reset styling to default outlined
+                    b.className = "category-btn px-4 py-2 rounded-full border border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#1b252f] text-[#111418] dark:text-white text-sm font-bold whitespace-nowrap transition-colors";
+                });
+
+                // Apply active style to clicked
+                btn.className = "category-btn px-4 py-2 rounded-full bg-[#111418] dark:bg-white text-white dark:text-[#111418] text-sm font-bold whitespace-nowrap transition-colors";
+
+                filterTasks();
+            });
+        });
+
+        searchInput.addEventListener('input', filterTasks);
+    </script>
+</body>
+
+</html>
